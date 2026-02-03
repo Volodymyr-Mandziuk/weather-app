@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![OpenWeather](https://img.shields.io/badge/OpenWeather-FFA500?logo=openweathermap&logoColor=white)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![License](https://img.shields.io/github/license/Volodymyr-Mandziuk/weather-app)
+![Stars](https://img.shields.io/github/stars/Volodymyr-Mandziuk/weather-app)
+![Live Demo](https://img.shields.io/badge/Live-Demo-success)
 
-Currently, two official plugins are available:
+# ☀️ Weather App
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A responsive **weather forecast application** built with **Vite, React, and TypeScript**.  
+Search for a city or use your current location to view a **3-day weather forecast**, choose the day, and switch between **°C / °F** units.
 
-## React Compiler
+### 🔗 Live Demo
+👉 https://weather-app-vm.web.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🌍 Search weather by city name
+- 📍 Get weather using **current geolocation**
+- 🗓 Select forecast day (up to 3 days)
+- 🌡 Switch between **Celsius / Fahrenheit**
+- 🕘 Last **5 searched cities** saved in localStorage
+- ⚠️ User-friendly validation & error messages
+- 📱 Fully responsive layout (desktop, tablet, mobile)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend:** React, TypeScript, Vite
+- **State & Logic:** Custom React hooks
+- **Weather API:** OpenWeatherMap
+- **Storage:** localStorage (search history)
+- **Styling:** CSS / Bootstrap grid
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📸 Screenshots
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Desktop View
+
+![Desktop view](screenshots/main-page-desktop.png)
+
+### Mobile View
+
+![Mobile view](screenshots/mobile.png)
+
+---
+
+## 🚀 Getting Started
+
+### Install & Run Locally
+
+```bash
+npm install
+npm run dev

@@ -1,0 +1,102 @@
+import { Button, Form, Spinner } from "react-bootstrap";
+import type { FormEvent } from "react";
+
+interface FormInfoProps {
+  value: string;
+  onChange: (value: string) => void;
+  weatherMethod: (e: FormEvent<HTMLFormElement>) => void;
+  locationMethod?: () => void;
+  isLocating: boolean;
+  history: string[];
+  showHistory: boolean;
+  setShowHistory: (v: boolean) => void;
+}
+
+function FormInfo({
+  weatherMethod,
+  locationMethod,
+  isLocating,
+  value,
+  onChange,
+  history,
+  showHistory,
+  setShowHistory,
+}: FormInfoProps) {
+  return (
+    <Form onSubmit={weatherMethod}>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-3">
+            {locationMethod && (
+              <Button
+                variant="primary"
+                type="button"
+                onClick={locationMethod}
+                disabled={isLocating}
+              >
+                {isLocating ? (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className="me-2"
+                    />
+                    Detecting...
+                  </>
+                ) : (
+                  "Your location"
+                )}
+              </Button>
+            )}
+          </div>
+
+          <div className="col-sm-6">
+            <div className="input-wrapper">
+              <Form.Control
+                type="text"
+                placeholder="Location"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                onFocus={() => {
+                  if (!value) setShowHistory(true);
+                }}
+                onBlur={() => {
+                  setTimeout(() => setShowHistory(false), 150);
+                }}
+                autoComplete="off"
+              />
+
+              {showHistory && history.length > 0 && (
+                <div className="history-popup">
+                  {history.map((city) => (
+                    <div
+                      key={city}
+                      className="history-item"
+                      onMouseDown={() => {
+                        onChange(city);
+                        setShowHistory(false);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="col-sm-3">
+            <Button variant="primary" type="submit" className="batt">
+              Get weather
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Form>
+  );
+}
+
+export default FormInfo;
