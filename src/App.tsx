@@ -6,7 +6,7 @@ import ButtDay from "./components/ButtDay";
 import ButtDeg from "./components/ButtDeg";
 import { useWeather } from "./hooks/useWeather";
 import type { FormEvent } from "react";
-import type { DayOption } from "./types/weather";
+import type { DayOption } from "./types/weather"; 
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
