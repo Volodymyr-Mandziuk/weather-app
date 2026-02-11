@@ -13,8 +13,7 @@ A responsive **weather forecast application** built with **Vite, React, and Type
 Search for a city or use your current location to view a **3-day weather forecast**, choose the day, and switch between **°C / °F** units.
 
 ### 🔗 Live Demo
-👉 https://weather-app-vm.web.app
-
+👉 https://my-portfolio-841e6.web.app/weather
 ---
 
 ## ✨ Features
