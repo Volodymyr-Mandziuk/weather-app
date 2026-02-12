@@ -6,7 +6,7 @@ import ButtDay from "./components/ButtDay";
 import ButtDeg from "./components/ButtDeg";
 import { useWeather } from "./hooks/useWeather";
 import type { FormEvent } from "react";
-import type { DayOption } from "./types/weather"; 
+import type { DayOption } from "./types/weather";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -73,7 +73,6 @@ function App() {
   };
 
   const getYourLocation = () => {
-   
     if (!navigator.geolocation) {
       setState((s) => ({ ...s, error: "Geolocation not supported" }));
       return;
@@ -163,27 +162,21 @@ function App() {
                 history={history}
                 showHistory={showHistory}
                 setShowHistory={setShowHistory}
-              />
-
-              <div className="row">
-                <div className="col-md-4">
+                dayComponent={
                   <ButtDay onSelect={setSelectedDay} selected={selectedDay} />
-                </div>
-
-                <div className="col-md-2">
-                  <ButtDeg unit={state.unit} onChange={setUnit} />
-                </div>
-
-                <div className="col-md-6">
-                  <Weather
-                    city={state.city}
-                    days={hasSubmitted ? state.days : null}
-                    unit={state.unit}
-                    selectedDay={selectedDay}
-                    error={state.error}
-                    hasInput={cityInput.trim().length > 0}
-                  />
-                </div>
+                }
+                degComponent={<ButtDeg unit={state.unit} onChange={setUnit} />}
+              />
+              <div className="col-md-6">
+                {" "}
+                <Weather
+                  city={state.city}
+                  days={hasSubmitted ? state.days : null}
+                  unit={state.unit}
+                  selectedDay={selectedDay}
+                  error={state.error}
+                  hasInput={cityInput.trim().length > 0}
+                />
               </div>
             </div>
           </div>

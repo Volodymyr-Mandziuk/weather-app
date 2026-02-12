@@ -7,6 +7,26 @@ body {
     rgba(159, 196, 227, 0.753) 0%,
     #579ed7 100%
   );
+} 
+
+/* ===== DESKTOP GRID ===== */
+.weather-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-rows: auto auto;
+  gap: 15px;
+  align-items: center;
+}
+
+/* First row placement */
+.grid-location { grid-column: 1; grid-row: 1; }
+.grid-input    { grid-column: 2; grid-row: 1; }
+.grid-day      { grid-column: 3; grid-row: 1; }
+.grid-deg      { grid-column: 4; grid-row: 1; }
+
+.grid-submit {
+  grid-column: 5;
+  grid-row: 1;
 }
 
 .wrapper {
@@ -64,6 +84,13 @@ input::-moz-placeholder {
   color: #103a65;
 }
 
+.custom-btn {
+  width: 100%;
+  white-space: normal;   /* allow wrapping */
+  text-align: center;
+  line-height: 1.2;
+}
+
 .batt {
   background-color: rgb(34, 0, 255);
   color: #f2ed8a;
@@ -111,23 +138,43 @@ input::-moz-placeholder {
 .history-item:hover {
   background-color: #f0f0f0;
 }
- 
-@media (max-width: 768px) {
-  .main {
-    height: auto;
+
+.custom-btn {
+  width: 50%;
+    white-space: nowrap;
   }
 
-  .info,
-  .form {
-    height: auto;
+@media (max-width: 1200px) {  
+
+  .custom-btn {
+    white-space: normal;
   }
 
-  .form {
-    padding: 20px;
+  .weather-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
   }
 
-  input[type="text"] {
-    width: 100%;
-    margin-right: 0;
+  /* Row 1: location + input */
+  .grid-location { grid-column: 1; grid-row: 1; }
+  .grid-input    { grid-column: 2; grid-row: 1; }
+
+  /* Row 2 */
+  .grid-day {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+
+  /* Row 3 */
+  .grid-deg {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+
+  /* Row 4 */
+  .grid-submit {
+    grid-column: 1 / span 2;
+    grid-row: 4;
   }
 }
+
