@@ -16,6 +16,7 @@ body {
   grid-template-rows: auto auto;
   gap: 15px;
   align-items: center;
+  padding: 0 30px;
 }
 
 /* First row placement */
@@ -58,9 +59,7 @@ body {
 .form {
   height: 80vh;
   padding-top: 50px;
-  padding-left: 50px;
-  padding-right: 0;
-}
+ }
 
 input[type="text"] {
   background-color: transparent;
@@ -86,8 +85,6 @@ input::-moz-placeholder {
 
 .custom-btn {
   width: 100%;
-  white-space: normal;   /* allow wrapping */
-  text-align: center;
   line-height: 1.2;
 }
 
@@ -125,13 +122,13 @@ input::-moz-placeholder {
   border: 1px solid #ccc;
   border-radius: 4px;
   z-index: 1000;
-  max-height: 180px;
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visibly;
   margin-top: 4px;
 }
 
 .history-item {
-  padding: 8px 12px;
+  padding: 3px 10px;
   cursor: pointer;
 }
 
@@ -139,15 +136,10 @@ input::-moz-placeholder {
   background-color: #f0f0f0;
 }
 
-.custom-btn {
-  width: 50%;
-    white-space: nowrap;
-  }
-
-@media (max-width: 1200px) {  
-
-  .custom-btn {
-    white-space: normal;
+@media (max-width: 1200px) { 
+  
+  .history-popup {
+    width: 100%;
   }
 
   .weather-grid {
@@ -175,6 +167,14 @@ input::-moz-placeholder {
   .grid-submit {
     grid-column: 1 / span 2;
     grid-row: 4;
+  }
+
+   .grid-location .custom-btn,
+  .grid-day .custom-btn,
+  .grid-deg .custom-btn,
+  .grid-submit .custom-btn {
+    width: auto;
+    justify-self: start;
   }
 }
 
