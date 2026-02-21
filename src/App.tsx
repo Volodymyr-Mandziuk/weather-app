@@ -22,7 +22,47 @@ function App() {
   const [selectedDay, setSelectedDay] = useState<DayOption | null>(null);
 
   const [history, setHistory] = useState<string[]>([]);
-  const [showHistory, setShowHistory] = useState(false);
+  const [showHistory, setShowHistory] = useState(false); 
+
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
+
+  useEffect(() => {
+  const fetchSuggestions = async () => {
+    const query = cityInput.trim();
+
+    if (query.length < 2) {
+      setSuggestions([]);
+      return;
+    }
+
+    try {
+      setIsLoadingSuggestions(true);
+
+      const res = await fetch(
+        `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`
+      );
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+
+      const formatted = data.map(
+        (item: any) => `${item.name}, ${item.country}`
+      );
+
+      setSuggestions(formatted);
+      setShowHistory(true);
+    } catch (err) {
+      console.error("Autocomplete error:", err);
+    } finally {
+      setIsLoadingSuggestions(false);
+    }
+  };
+
+  const timeout = setTimeout(fetchSuggestions, 400); // debounce
+  return () => clearTimeout(timeout);
+}, [cityInput]);
 
   useEffect(() => {
     const stored = localStorage.getItem("cityHistory");
@@ -166,6 +206,8 @@ function App() {
                   <ButtDay onSelect={setSelectedDay} selected={selectedDay} />
                 }
                 degComponent={<ButtDeg unit={state.unit} onChange={setUnit} />}
+                suggestions={suggestions}
+                isLoadingSuggestions={isLoadingSuggestions}
               />
               <div className="col-md-6">
                 {" "}

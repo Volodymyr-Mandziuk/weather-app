@@ -15,7 +15,7 @@ body {
   grid-template-columns: auto 1fr auto auto auto;
   grid-template-rows: auto auto;
   gap: 15px;
-  align-items: center;
+  align-items: end;
   padding: 0 30px;
 }
 
@@ -65,12 +65,13 @@ input[type="text"] {
   background-color: transparent;
   border: 0;
   border-bottom: solid 2px #113a65;
-  width: 80%;
-  padding-bottom: 4px;
+  width: 100%;
+  padding-bottom: 10px; 
+  padding-top: 0;
   color: #fff;
   font-weight: lighter;
-  margin-bottom: 30px;
-  margin-right: 20px;
+  margin-bottom: 0px;
+  margin-right: 0px;
   font-size: 20px;
   outline: none;
 }

@@ -12,6 +12,8 @@ interface FormInfoProps {
   setShowHistory: (v: boolean) => void;
   dayComponent: React.ReactNode;
   degComponent: React.ReactNode;
+  suggestions: string[];
+  isLoadingSuggestions: boolean;
 }
 
 function FormInfo({
@@ -25,6 +27,8 @@ function FormInfo({
   setShowHistory,
   dayComponent,
   degComponent,
+  suggestions,
+  isLoadingSuggestions,
 }: FormInfoProps) {
   return (
     <Form onSubmit={weatherMethod} className="weather-grid">
@@ -72,20 +76,37 @@ function FormInfo({
             autoComplete="off"
           />
 
-          {showHistory && history.length > 0 && (
+          {showHistory && (suggestions.length > 0 || history.length > 0) && (
             <div className="history-popup">
-              {history.map((city) => (
-                <div
-                  key={city}
-                  className="history-item"
-                  onMouseDown={() => {
-                    onChange(city);
-                    setShowHistory(false);
-                  }}
-                >
-                  {city}
-                </div>
-              ))}
+              {isLoadingSuggestions && (
+                <div className="history-item">Searching...</div>
+              )}
+
+              {suggestions.length > 0
+                ? suggestions.map((city) => (
+                    <div
+                      key={city}
+                      className="history-item"
+                      onMouseDown={() => {
+                        onChange(city);
+                        setShowHistory(false);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))
+                : history.map((city) => (
+                    <div
+                      key={city}
+                      className="history-item"
+                      onMouseDown={() => {
+                        onChange(city);
+                        setShowHistory(false);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))}
             </div>
           )}
         </div>
